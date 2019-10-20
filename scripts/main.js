@@ -14,10 +14,14 @@ let myHeading = document.querySelector('h1');
 
 function setUserName() {
     let myName = prompt('Please enter your name.');
-    localStorage.setItem('name', myName);
-    myHeading.textContext = 'Mozilla is cool, ' + myName;
+    if (!myName || myName === null) {
+        setUserName();
+    } else {
+        localStorage.setItem('name', myName);
+        myHeading.innerHTML = 'Mozilla is cool, ' + myName;
+    }
 }
-
+    
 if(!localStorage.getItem('name')) {
     setUserName();
 } else {
